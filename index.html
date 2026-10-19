@@ -1,0 +1,256 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free Hindi and English typing practice, typing speed tests, accuracy checker and daily typing exercises.">
+<title>Typing Mitra - Hindi & English Typing Test</title>
+<style>
+:root{--blue:#2457e6;--ink:#17233d;--muted:#65718a;--bg:#f4f7fc}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:#fff;padding:17px 6%;display:flex;justify-content:space-between;align-items:center;gap:12px;box-shadow:0 2px 12px #17233d0b}
+.logo{font-size:23px;font-weight:800;color:var(--blue)}
+nav a{color:var(--ink);text-decoration:none;margin-left:18px;font-size:14px}
+.hero{text-align:center;padding:45px 16px 28px}
+.hero h1{font-size:clamp(28px,5vw,43px);margin:0 0 12px}
+.hero p{color:var(--muted);line-height:1.7}
+.wrap{max-width:1000px;margin:auto;padding:0 16px 40px}
+.card{background:white;border:1px solid #e4e9f3;border-radius:16px;padding:22px;margin-bottom:18px;box-shadow:0 5px 24px #182b4b08}
+h2{margin:0 0 16px;font-size:21px}
+label{display:block;font-size:14px;font-weight:700;margin-bottom:7px}
+select,button,textarea{font:inherit}
+select{width:100%;padding:12px;border:1px solid #d6ddeb;border-radius:9px;background:#fff;color:var(--ink)}
+.settings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+button{border:0;border-radius:9px;padding:12px 17px;cursor:pointer;font-weight:700}
+.primary{background:var(--blue);color:white}
+.secondary{background:#eaf0ff;color:var(--blue)}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:17px}
+.paragraph{padding:18px;background:#f7f9ff;border:1px solid #e1e8fa;border-radius:10px;line-height:2;font-size:19px;white-space:pre-wrap;overflow-wrap:anywhere;min-height:100px}
+textarea{width:100%;min-height:140px;resize:vertical;padding:15px;border:2px solid #dbe3f2;border-radius:10px;line-height:1.9;outline-color:var(--blue);margin-top:12px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:16px}
+.stat{background:#f6f8fd;border-radius:10px;padding:15px 8px;text-align:center}
+.stat strong{display:block;font-size:25px;color:var(--blue)}
+.stat span{display:block;font-size:12px;color:var(--muted);margin-top:5px}
+.notice{font-size:13px;line-height:1.7;color:var(--muted);margin-top:12px}
+footer{text-align:center;background:#fff;padding:28px 15px;color:var(--muted);font-size:13px}
+footer a{color:var(--blue);margin:0 8px}
+.hidden{display:none}
+@media(max-width:650px){header{padding:15px;flex-wrap:wrap}nav a{margin:0 10px 0 0}.settings{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.card{padding:16px}.hero{padding-top:32px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">⌨ Typing Mitra</div>
+  <nav>
+    <a href="#test">Typing Test</a>
+    <a href="#practice">Practice</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Improve Your Typing Speed</h1>
+  <p>Free Hindi and English typing practice.<br>
+  अपनी टाइपिंग स्पीड और एक्यूरेसी बेहतर बनाएँ।</p>
+</section>
+
+<main class="wrap">
+<section class="card" id="test">
+  <h2>⌨ Typing Speed Test</h2>
+  <div class="settings">
+    <div>
+      <label for="language">Typing language</label>
+      <select id="language">
+        <option value="en">English</option>
+        <option value="hi">Hindi Unicode (Mangal)</option>
+        <option value="kd">Kruti Dev 010 mode</option>
+      </select>
+    </div>
+    <div>
+      <label for="duration">Test duration</label>
+      <select id="duration">
+        <option value="1">1 minute</option>
+        <option value="5" selected>5 minutes</option>
+        <option value="10">10 minutes</option>
+        <option value="15">15 minutes</option>
+      </select>
+    </div>
+    <div>
+      <label for="font">Display font</label>
+      <select id="font">
+        <option value="Arial">Arial</option>
+        <option value="Roboto">Roboto</option>
+        <option value="Verdana">Verdana</option>
+        <option value="Tahoma">Tahoma</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Times New Roman">Times New Roman</option>
+        <option value="Mangal">Mangal (if installed)</option>
+        <option value="Kruti Dev 010">Kruti Dev 010 (if installed)</option>
+      </select>
+    </div>
+  </div>
+
+  <div style="margin-top:22px">
+    <label>Type this paragraph</label>
+    <div class="paragraph" id="prompt" lang="en">Practice makes a person better. Keep your fingers relaxed, sit comfortably, and focus on accuracy before speed. A little practice every day can help you become a confident typist.</div>
+  </div>
+
+  <div style="margin-top:16px">
+    <label for="typing">Start typing here</label>
+    <textarea id="typing" placeholder="Click Start Test, then type the paragraph here..." disabled></textarea>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><strong id="time">05:00</strong><span>Time left</span></div>
+    <div class="stat"><strong id="wpm">0</strong><span>Words per minute</span></div>
+    <div class="stat"><strong id="accuracy">100%</strong><span>Accuracy</span></div>
+    <div class="stat"><strong id="errors">0</strong><span>Errors</span></div>
+  </div>
+
+  <div class="actions">
+    <button class="primary" id="start">Start Test</button>
+    <button class="secondary" id="reset">Reset</button>
+  </div>
+  <p class="notice" id="message" aria-live="polite">Choose your language and duration, then start your test.</p>
+  <p class="notice">Note: Mangal is a Unicode typing method. Selecting a font does not change your keyboard layout. Kruti Dev 010 uses a legacy keyboard mapping and requires separate mapping support and a compatible font to work correctly. This first version does not yet convert Unicode text to Kruti Dev.</p>
+</section>
+
+<section class="card" id="practice">
+  <h2>Daily Typing Practice</h2>
+  <p>Choose a language above and practice with a fresh paragraph. Start with accuracy, then build speed.</p>
+  <button class="secondary" id="newText">Load another paragraph</button>
+</section>
+
+<section class="card" id="about">
+  <h2>About Typing Mitra</h2>
+  <p>Typing Mitra is a learning project for people who want to practice Hindi and English typing. Our goal is to make typing practice simple and accessible.</p>
+  <p class="notice">We are improving the website step by step. Always verify the requirements of your typing examination with its official notification.</p>
+</section>
+
+<section class="card">
+  <h2>Privacy</h2>
+  <p class="notice">This basic version processes your typing test in your browser. It does not include an account system or save your test history online.</p>
+  <p class="notice">Before public launch or applying for advertising, add complete and accurate Privacy Policy, Contact and Terms pages that reflect the website's actual practices.</p>
+</section>
+</main>
+
+<footer>
+  <p>© <span id="year"></span> Typing Mitra</p>
+  <a href="#about">About Us</a>
+  <a href="#test">Typing Test</a>
+  <a href="#practice">Practice</a>
+</footer>
+
+<script>
+const samples = {
+  en: [
+    "Practice makes a person better. Keep your fingers relaxed, sit comfortably, and focus on accuracy before speed. A little practice every day can help you become a confident typist.",
+    "Learning a new skill takes patience and regular effort. Set a small goal, practise every day, and review your progress. Accuracy is important because correct typing saves time and makes your work easier to read."
+  ],
+  hi: [
+    "नियमित अभ्यास से हमारी टाइपिंग बेहतर होती है। हमें आराम से बैठकर सही अक्षरों पर ध्यान देना चाहिए। पहले शुद्धता बढ़ाएँ और फिर धीरे धीरे अपनी गति में सुधार करें।",
+    "समय का सही उपयोग सफलता की दिशा में एक महत्वपूर्ण कदम है। रोज थोड़ा अभ्यास करने से हमारा आत्मविश्वास बढ़ता है। धैर्य और मेहनत से हम अपने लक्ष्य को प्राप्त कर सकते हैं।"
+  ],
+  kd: [
+    "Hindi typing practice helps learners improve speed and accuracy. Select the correct keyboard layout before practising for a typing examination.",
+    "Regular practice helps develop confidence. Focus on correct keystrokes, a comfortable posture, and steady progress."
+  ]
+};
+
+const $ = id => document.getElementById(id);
+let active = false, finished = false, remaining = 300, startedAt = 0, interval = null, target = "";
+const chars = s => Array.from(s);
+
+function updateTime(){
+  const m = Math.floor(remaining / 60);
+  const s = remaining % 60;
+  $("time").textContent = String(m).padStart(2,"0")+":"+String(s).padStart(2,"0");
+}
+
+function updateStats(){
+  const typed = $("typing").value;
+  const a = chars(typed), b = chars(target);
+  let errors = 0;
+  for(let i=0;i<a.length;i++) if(a[i] !== b[i]) errors++;
+  const correct = Math.max(0,a.length-errors);
+  const elapsed = active ? (Date.now()-startedAt)/60000 : (Number($("duration").value)*60-remaining)/60;
+  $("wpm").textContent = elapsed > 0 ? Math.round(correct/5/elapsed) : 0;
+  $("accuracy").textContent = a.length ? Math.round(correct/a.length*100)+"%" : "100%";
+  $("errors").textContent = errors;
+  if(a.length >= b.length && active) endTest("Paragraph completed!");
+}
+
+function chooseText(){
+  const lang = $("language").value;
+  const options = samples[lang];
+  target = options[Math.floor(Math.random()*options.length)];
+  $("prompt").textContent = target;
+  $("prompt").style.fontFamily = $("font").value + ", sans-serif";
+  $("prompt").lang = lang === "en" ? "en" : "hi";
+  $("typing").style.fontFamily = $("font").value + ", sans-serif";
+}
+
+function startTest(){
+  clearInterval(interval);
+  remaining = Number($("duration").value)*60;
+  active = true; finished = false; startedAt = Date.now();
+  $("typing").value = "";
+  $("typing").disabled = false;
+  $("language").disabled = true;
+  $("duration").disabled = true;
+  chooseText();
+  updateTime(); updateStats();
+  $("message").textContent = "Test running. Type the paragraph as accurately as possible.";
+  $("typing").focus();
+  interval = setInterval(()=>{
+    remaining--;
+    updateTime(); updateStats();
+    if(remaining <= 0) endTest("Time is up! Your result is ready.");
+  },1000);
+}
+
+function endTest(msg){
+  if(!active) return;
+  active = false; finished = true;
+  clearInterval(interval);
+  $("typing").disabled = true;
+  $("language").disabled = false;
+  $("duration").disabled = false;
+  updateStats();
+  $("message").textContent = msg+" WPM: "+$("wpm").textContent+", accuracy: "+$("accuracy").textContent+".";
+}
+
+function resetTest(){
+  clearInterval(interval);
+  active = false; finished = false;
+  remaining = Number($("duration").value)*60;
+  $("typing").value = "";
+  $("typing").disabled = true;
+  $("language").disabled = false;
+  $("duration").disabled = false;
+  chooseText(); updateTime();
+  $("wpm").textContent = "0"; $("accuracy").textContent = "100%"; $("errors").textContent = "0";
+  $("message").textContent = "Ready when you are. Press Start Test.";
+}
+
+$("start").addEventListener("click",startTest);
+$("reset").addEventListener("click",resetTest);
+$("typing").addEventListener("input",()=>{if(active)updateStats()});
+$("language").addEventListener("change",resetTest);
+$("duration").addEventListener("change",resetTest);
+$("font").addEventListener("change",()=>{
+  $("prompt").style.fontFamily = $("font").value+", sans-serif";
+  $("typing").style.fontFamily = $("font").value+", sans-serif";
+});
+$("newText").addEventListener("click",()=>{
+  if(active){$("message").textContent="Finish or reset your current test before changing the paragraph.";return}
+  chooseText();
+  $("message").textContent="New practice paragraph loaded.";
+});
+$("year").textContent = new Date().getFullYear();
+chooseText(); updateTime();
+</script>
+</body>
+</html>
